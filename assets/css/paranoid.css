@@ -1,0 +1,18 @@
+
+#whyyouneedit ul {
+    text-align: left;
+}
+
+.app-placeholder {
+    text-align: center;
+}
+
+
+#generate ul, #generate ol, #generate form {
+    text-align: left;
+}
+#generate form #password {
+    background: aliceblue;
+    border-radius: 5px;
+    padding: 4px 4px 4px 20px;
+}
