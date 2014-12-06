@@ -27,7 +27,7 @@ If you're ready to add Paranoid support to a product, want to make Paranoid itse
 
 
 ###Tests
-Uses [http://mochajs.org/](Mocha) and [Chai](http://chaijs.com/) for testing.
+Uses [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/) for testing.
 
 Run the tests with `make test` or `make test-nyan`
 
