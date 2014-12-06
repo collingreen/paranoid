@@ -1,6 +1,6 @@
 ####Paranoid Password - Password generation, but better.
 
-[ParanoidPassword.com](http://ParanoidPassword.com) - Generate Paranoid Passwords [Here](http://paranoidpassword.com/generate).
+[ParanoidPassword.com](http://ParanoidPassword.com) - Generate Paranoid Passwords [Here](https://collingreen.github.io/paranoid).
 
 ParanoidPassword is a password generation algorithm with some extra
 features on top to make living in a digital, password-focused world easier long term.
