@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -8,7 +8,7 @@
   <meta name="keywords" content="password, password management, password generator">
   <meta name="viewport" content="width=device-width">
   <meta property="og:title" content="Paranoid Password">
-  <meta property="og:url" content="http://paranoidpassword.com/">
+  <meta property="og:url" content="https://paranoidpassword.com/">
   <meta property="og:description" content="Password Management, But Better">
   <meta property="og:type" content="website">
 
@@ -19,27 +19,34 @@
   <link href="assets/css/icomoon.css" rel="stylesheet">
   <link href="assets/css/animate-custom.css" rel="stylesheet">
   <link href="assets/css/paranoid.css" rel="stylesheet">
-
-  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-  
+  <link href="assets/css/fonts.css" rel="stylesheet">
 
   
-  <!-- why doesn't this work? :( -->
-  <!-- <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script> -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
   
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.min.js"></script>
-  <![endif]-->
+
+  
+  
+  <script type='text/javascript'>
+    if (window.location.protocol != "https:") {
+      window.location.href = "https:" +
+        window.location.href.substring(window.location.protocol.length);
+    }
+  </script>
+  
+  
+
+  
+  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
 
 
   
 </head>
 
-<body data-spy="scroll" data-offset="0" data-target="#navbar-main">
+
+
+<body class=""data-spy="scroll" data-offset="0" data-target="#navbar-main">
+
 
   
   <div id="navbar-main">
@@ -48,7 +55,7 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon icon-lock" style="font-size:30px; color:#3498db;"></span>
+            <span class="icon icon-lock"></span>
           </button>
           
   <a
@@ -72,136 +79,222 @@
   
 
   
+  
+  
     <section id="generate" class="section-divider">
-      <div class="container">
+  <div class="container">
 
-        <div class="row">
-          <div class="col-sm-12">
-            <h2>Generate your Password</h2>
-            <h4>
-              NOTE: Use this page as a last resort -- you should install local
-              paranoid password generators on each device you use
-              to ensure your generator is not compromised. While we take every
-              precaution to protect this page, the more people use it the more
-              valuable it becomes for hackers to target.
-            </h4>
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Generate your Password</h2>
+        <h4>
+          NOTE: Use this page as a last resort -- you should install local
+          paranoid password generators on each device you use
+          to ensure your generator is not compromised. While we take every
+          precaution to protect this page, the more people use it the more
+          valuable it becomes for hackers to target.
+        </h4>
 
-            <h4>If you have never been here before, take a moment to
-              <a href="https://paranoidpassword.com/index.html">Learn about Paranoid Password</a>
-              and why you need it.
-            </h4>
-          </div>
-        </div>
+        <h4>If you have never been here before, take a moment to
+          <a href="https://paranoidpassword.com/index.html">Learn about Paranoid Password</a>
+          and why you need it.
+        </h4>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-4">
-            <h5>Instructions:</h5>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Instructions:</h5>
+      </div>
+    </div>
 
-        <div class="row">
-          <div class="col-md-4">
-            <ol>
-              <li>Copy and Paste the url where you are logging in</li>
-              <li>Enter your passphrase</li>
-              <li>Enter your paranoid lock phrase</li>
-              <li>Generate your Password</li>
-              <li>Copy the password</li>
-              <li>Click the clear button</li>
-              <li>Paste the password where you need it</li>
-              <li>Copy any other text to clear your clipboard</li>
-            </ol>
-          </div>
+    <div class="row">
+      <div class="col-md-4">
+        <ol>
+  <li>Copy and Paste the url where you are logging in</li>
+  <li>Enter your passphrase</li>
+  <li>Enter your paranoid lock phrase</li>
+  <li>Generate your Password</li>
+  <li>Copy the password</li>
+  <li>Click the clear button</li>
+  <li>Paste the password where you need it</li>
+  <li>Copy any other text to clear your clipboard</li>
+</ol>
 
-          <div class="col-md-8">
-            <form class="form-horizontal" role="form">
-              <div class="form-group">
-                <label for="site" class="col-sm-2 control-label">Site</label>
-                <div class="col-sm-10">
-                  <input class="form-control" id="site" placeholder="http://example.com" value="http://example.com">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="passphrase" class="col-sm-2 control-label">Passphrase</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="passphrase" placeholder="a very strong password">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="lock" class="col-sm-2 control-label">Lock</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="lock" placeholder="paranoid lock phrase">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-3">
-                  <a id="generate_button" class="btn btn-default">Generate Password</a>
-                </div>
-                <div class="col-sm-3">
-                  <a id="clear_button" class="btn btn-info">Clear</a>
-                </div>
-                <div class="col-sm-4">
-                  <input type='checkbox' id='normalize_uri' checked='true'/> Normalize Site
-                  <br/>
-                  <span id="translated_uri"></span>
-                </div>
-              </div>
+      </div>
 
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10" id="password">
-                  Click Generate to Create Your Password
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+      <div class="col-md-8">
+        <form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="site" class="col-sm-2 col-xs-12 control-label">Site</label>
+    <div class="col-sm-9 col-xs-10">
+      <input class="form-control" id="site" placeholder="http://example.com" value="">
+    </div>
+    <div class="col-sm-1 col-xs-1">
+      <a href="#" id="stupid_site_button" class="btn btn btn-primary good">
+        <i class="good_site icon icon-thumbs-up"></i>
+        <i class="stupid_site icon icon-thumbs-down"></i>
+      </a>
+      <input type='hidden' id='stupid_site_input' name='stupid_site' value='false'/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-5 col-sm-offset-2 col-sm-4">
+      <input type='checkbox' id='normalize_uri' checked='true'/> Normalize Site
+    </div>
+    <div class="col-xs-7 col-sm-6">
+      <span id="translated_uri"></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="passphrase" class="col-sm-2 control-label">Passphrase</label>
+    <div class="col-sm-10">
+        <input type="password" class="form-control" id="passphrase" placeholder="a very strong password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lock" class="col-sm-2 control-label">Lock</label>
+    <div class="col-sm-10">
+        <input type="password" class="form-control" id="lock" placeholder="paranoid lock phrase">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-3 col-xs-6">
+      <a id="generate_button" class="btn btn-default">Generate Password</a>
+    </div>
+    <div class="col-sm-7 col-xs-6">
+      <a id="clear_button" class="btn btn-info">Clear</a>
+    </div>
+  </div>
 
-        <div class="row">
-          <p>
-            This site will always be available, but you can also save this
-            page and open it on your own machine to ensure you can use it
-            without an internet connection and to be sure you have the pure,
-            uncompromised version.
-          </p>
-        </div>
-      </div><!-- container -->
-    </section><!-- section -->
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10" id="password">
+      Click Generate to Create Your Password
+    </div>
+  </div>
+</form>
 
 
-  
+<div class="modal" id="stupid_site_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Stupid Sites</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+        Turn on 'Stupid Site Mode' if the site you are using
+        limits the length of passwords they accept.
+        </p>
+        <p>
+        You should strongly consider emailing the site owners
+        and requesting that they allow unlimited length passwords.
+        Sites that constrain password lengths are being irresponsible
+        with your data and you should demand that they take security
+        more seriously.
+        </p>
+        <p>
+        Premium Paranoid can remember this setting for you for
+        all the different sites you use, making dealing with
+        these stupid sites a little bit easier.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a id="stupid_site_limit" href="#" class="btn btn-info">Limit Length <i class="icon icon-thumbs-down"></i></a>
+        <a id="stupid_site_full" href="#" class="btn btn-primary">Full Length <i class="icon icon-thumbs-up"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
 
-  
 
-<script type='text/javascript' src='assets/js/generate.js'>
+<script type='text/javascript'>
+  // ui javascript here so generate javascript can stay vanilla
+  window.addEventListener('load', function () {
+
+    // buttons on stupid site modal
+    $('#stupid_site_limit').on('click', function () {
+      $("#stupid_site_modal").modal('hide');
+      $('#stupid_site_button')
+        .removeClass('good')
+        .removeClass('btn-primary')
+        .addClass('bad')
+        .addClass('btn-info');
+      $('#stupid_site_input').val('true');
+    });
+
+    $('#stupid_site_full').on('click', function () {
+      $("#stupid_site_modal").modal('hide');
+      $('#stupid_site_button')
+        .removeClass('bad')
+        .removeClass('btn-info')
+        .addClass('good')
+        .addClass('btn-primary');
+      $('#stupid_site_input').val('false');
+    });
+
+    $('#stupid_site_button').on('click', function () {
+      var modal = $("#stupid_site_modal").modal('show');
+      if (window.resizeModal) {
+        resizeModal(modal);
+      }
+    });
+  });
 </script>
 
+
+      </div>
+    </div>
+
+    <div class="row">
+      <p>
+        This site will always be available, but you can also save this
+        page and open it on your own machine to ensure you can use it
+        without an internet connection and to be sure you have the pure,
+        uncompromised version.
+      </p>
+    </div>
+  </div><!-- container -->
+</section><!-- section -->
+
+  
+
+  
 
   
   <div id="footerwrap">
     <div class="container">
+      
       <h4>Made by
         <a href="https://collingreen.com">Collin Green</a>
       </h4>
       <h5>
         <a href="https://github.com/collingreen/paranoid">Get the Source on Github <i class="icon icon-github"></i></a>
       </h5>
+      
     </div>
   </div>
   
 
   
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 
   
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<script type='text/javascript' src='assets/js/generate.browserify.js'></script>
 
-  ga('create', 'UA-57158053-1', 'auto');
-  ga('send', 'pageview');
 
-</script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-57158053-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
   
 </body>
 </html>

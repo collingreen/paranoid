@@ -1,0 +1,35 @@
+.mobile { height: inherit; }
+.mobile .navbar {
+    min-height: 30px;
+}
+
+.mobile .navbar-toggle {
+    padding: 6px;
+}
+
+.mobile .navbar-toggle .icon {
+    font-size: 24px;
+}
+
+.mobile #footerwrap {
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: -1px;
+}
+
+.mobile .section-divider {
+    border: none;
+}
+
+.mobile #password {
+    font-size: 80%;
+}
+
+.mobile .modal {
+  margin-top: 25px;
+}
+
+.mobile .modal .modal-body {
+  overflow-y: scroll;
+}
