@@ -63,3 +63,7 @@ While it is unreasonably difficult to infer your password from the paranoid hash
 
 ###Alternatives
 There are many password solutions out there (although most of them have frightening vulnerabilities or risk points). Learn how they work, decide what trade-offs are worth it for you (for example, Paranoid makes it easy and safe to have your passwords anywhere but makes it possible for attackers with your master password and the correct lock to generate your password for the relevant sites), and take your password security seriously.
+
+###Your Own Password Page
+You can (and should!) fork this repository and host the generation page (in the gh_pages branch) yourself or from your github fork so you can be absolutely sure what you are using. You can also have your own dev environment for Paranoid set up in seconds using nitrous.io by clicking the button to the right --> [![Hack paranoid on Nitrous](https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-s-v1-0616054bfad452919522f1d08ad1fddf.png)](https://www.nitrous.io/hack_button?source=embed&runtime=nodejs&repo=collingreen%2Fparanoid&file_to_open=lib%2Fparanoid.js)
+
