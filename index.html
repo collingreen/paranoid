@@ -21,6 +21,7 @@
   <link href="assets/css/paranoid.css" rel="stylesheet">
   <link href="assets/css/fonts.css" rel="stylesheet">
 
+  <link href="assets/plugins/notifyr/notifyr.min.css" rel="stylesheet">
   
 
   
@@ -36,6 +37,9 @@
   
   
 
+  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/plugins/notifyr/notifyr.min.js"></script>
+  <script type="text/javascript" src="assets/js/paranoidpassword.js"></script>
   
   <script type="text/javascript" src="assets/js/jquery.min.js"></script>
 
@@ -111,21 +115,20 @@
     <div class="row">
       <div class="col-md-4">
         <ol>
-  <li>Copy and Paste the url where you are logging in</li>
+  <li>Paste/Enter the URL where you are logging in</li>
   <li>Enter your passphrase</li>
   <li>Enter your paranoid lock phrase</li>
   <li>Generate your Password</li>
-  <li>Copy the password</li>
-  <li>Click the clear button</li>
-  <li>Paste the password where you need it</li>
-  <li>Copy any other text to clear your clipboard</li>
+  
+  <li>Copy the password and use it to log in!</li>
+  
 </ol>
 
       </div>
 
       <div class="col-md-8">
         <form class="form-horizontal" role="form">
-  <div class="form-group">
+  <div class="form-group tutorial-step tutorial-step-0">
     <label for="site" class="col-sm-2 col-xs-12 control-label">Site</label>
     <div class="col-sm-9 col-xs-10">
       <input class="form-control" id="site" placeholder="http://example.com" value="">
@@ -138,7 +141,7 @@
       <input type='hidden' id='stupid_site_input' name='stupid_site' value='false'/>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group tutorial-step tutorial-step-0">
     <div class="col-xs-5 col-sm-offset-2 col-sm-4">
       <input type='checkbox' id='normalize_uri' checked='true'/> Normalize Site
     </div>
@@ -146,30 +149,30 @@
       <span id="translated_uri"></span>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group tutorial-step tutorial-step-1">
     <label for="passphrase" class="col-sm-2 control-label">Passphrase</label>
     <div class="col-sm-10">
         <input type="password" class="form-control" id="passphrase" placeholder="a very strong password">
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group tutorial-step tutorial-step-2">
     <label for="lock" class="col-sm-2 control-label">Lock</label>
     <div class="col-sm-10">
         <input type="password" class="form-control" id="lock" placeholder="paranoid lock phrase">
     </div>
   </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-3 col-xs-6">
-      <a id="generate_button" class="btn btn-default">Generate Password</a>
+  <div class="form-group tutorial-step tutorial-step-3">
+    <div class="col-sm-offset-2 col-sm-4 col-xs-6">
+      <a id="generate_button" class="btn btn-info focus-target">Generate Password</a>
     </div>
-    <div class="col-sm-7 col-xs-6">
-      <a id="clear_button" class="btn btn-info">Clear</a>
+    <div class="col-sm-3 col-xs-3">
+      <a id="clear_button" class="btn btn-default">Clear</a>
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10" id="password">
-      Click Generate to Create Your Password
+      Waiting to Generate Password
     </div>
   </div>
 </form>

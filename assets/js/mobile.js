@@ -25,7 +25,24 @@ function resizeModal(modal) {
   }
 };
 
+
 (function() {
+
+  document.addEventListener("deviceready", function () {
+    // display cordova required items
+    if (window.cordova) {
+      $('.cordova_required').css('display', 'block');
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // open getting started modal on the first load
+    var storageKey = 'paranoid_getting_started_1';
+    if (localStorage && !localStorage.getItem(storageKey)) {
+      localStorage.setItem(storageKey, true);
+      showGettingStarted();
+    }
+  }, false);
 
   // // overwrite model function to always call resizeModal after
   // var originalModal = $.fn.modal;
@@ -39,26 +56,58 @@ function resizeModal(modal) {
   //   return modal;
   // };
 
+
+  // open modal wrapper -- closes other modals, resizes on mobile
+  function openModal (selector) {
+    if (!window.openModals) {
+      window.openModals = [];
+    }
+
+    for (var i = 0; i < window.openModals.length; i++) {
+      window.openModals[i].modal('hide');
+    }
+    window.openModals = [];
+
+    var modal = $(selector).modal({show: true});
+    resizeModal(modal);
+    window.openModals.push(modal);
+  };
+
   // TODO: abstract this and just have one modal that
   // changes content
   $('.instructions_button').on('click', function () {
-    var modal = $('#instructions_modal').modal({show: true});
-    resizeModal(modal);
+    openModal('#instructions_modal');
+  });
+
+  $('.creating_strong_passphrases').on('click', function () {
+    openModal('#creating_passphrases_modal');
+  });
+
+  $('.frequently_asked_questions').on('click', function () {
+    openModal('#faq_modal');
+  });
+
+  $('.getting_started').on('click', function () {
+    showGettingStarted();
   });
 
   $('.about_button').on('click', function () {
-    var modal = $('#about_modal').modal({show: true});
-    resizeModal(modal);
+    openModal('#about_modal');
   });
 
   $('.upgrade_button').on('click', function () {
-    var modal = $('#upgrade_modal').modal({show: true});
-    resizeModal(modal);
+    openModal('#upgrade_modal');
   });
 
   $('.login_button').on('click', function () {
-    var modal = $('#login_modal').modal({show: true});
-    resizeModal(modal);
+    notify('logging in');
+    $.post({
+      url: 'http://10.0.0.10:8080/login',
+      complete: function (res) {
+        console.log('response', res);
+        alert(res);
+      }
+    });
   });
 
   $('.navbar-header .navbar-toggle').on('click', function (e) {
@@ -100,4 +149,9 @@ function resizeModal(modal) {
       classie.add( overlay, 'open' );
     }
   }
+
+  function showGettingStarted() {
+    openModal('#getting_started_modal');
+  }
+
 })();

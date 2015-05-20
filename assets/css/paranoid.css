@@ -3,6 +3,8 @@
     background: #C4E3F9;
 }
 
+.hidden { display: none; }
+
 .premium_feature { display: none !important; }
 .premium .premium_feature { display: block !important; }
 .premium .free_feature { display: none !important; }
@@ -50,3 +52,14 @@
 
 #stupid_site_button.good .good_site { display: block; }
 #stupid_site_button.good .stupid_site { display: none; }
+
+
+.tutorial-off .requires-tutorial {
+  display: none;
+}
+.tutorial-disabled {
+  display: none;
+}
+.tutorial-off .tutorial-disabled {
+  display: block;
+}

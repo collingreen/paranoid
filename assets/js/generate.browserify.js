@@ -21,21 +21,165 @@ window.addEventListener('load', function () {
       // normalize uri
       displayUri = paranoid.getPasswordTarget(uri.value);
     }
-
     translatedUri.innerHTML = displayUri;
   }
+
+  // Update the status based on what is filled in
+  function updateStatus() {
+    var statusStep = 0;
+    var hasPassword = false;
+
+    var displayUri = uri.value;
+    if (displayUri !== '') {
+      statusStep = 1;
+    }
+    if (passphrase.value !== '') {
+      statusStep = 2;
+    }
+    if (lock.value !== '') {
+      statusStep = 3;
+    }
+    if (password.hasAttribute('data-has-password')) {
+      statusStep = 4;
+      hasPassword = true;
+    }
+
+    // update tutorial
+    if (!window.tutorialDisabled) {
+      $('#tutorial-overlay, #tutorial-content')
+        .removeClass('shown')
+        .removeClass('hidden')
+        .addClass((statusStep === 4) ? 'hidden' : 'shown');
+
+      var tutorialSelector = '.tutorial-step-' + statusStep;
+      var tutorialTarget = $(tutorialSelector);
+      $('.tutorial-step').not(tutorialSelector).removeClass('highlight');
+      tutorialTarget.addClass('highlight');
+
+      // scroll to tutorial section
+      if (tutorialTarget.length > 0) {
+        var top = tutorialTarget.offset().top;
+        $('html body').animate({
+          scrollTop: Math.max(top-50, 0)
+        }, 500);
+
+        // blur the last input
+        window.lastFocus && window.lastFocus.blur();
+
+        // focus next input if possible
+        var inputs = tutorialTarget.find('input');
+        if (inputs.length > 0) {
+          inputs[0].focus();
+          window.lastFocus = inputs[0];
+          // TODO: trigger android keyboard
+        } else {
+          // look for 'focus-target'
+          var target = tutorialTarget.find('.focus-target');
+          if (target.length > 0) {
+            target.focus();
+            window.lastFocus = target;
+          }
+        }
+      }
+    }
+
+    // update status text
+    var statusTarget = '.status-step-' + statusStep;
+    $('.status-step').not(statusTarget).removeClass('current');
+    $(statusTarget).addClass('current');
+  } // end function updateStatus
+
+  // copy if possible -- cordova only
+  function doCopy() {
+    if (window.cordova) {
+      if (window.cordova.plugins &&
+          window.cordova.plugins.clipboard &&
+          window.cordova.plugins.clipboard.copy) {
+        window.cordova.plugins.clipboard.copy(password.innerHTML);
+        notify('Copied Password to Clipboard', 'Password Copied', 'success');
+      } else {
+        notify('No clipboard available', null, 'error');
+      }
+    }
+  }
+
+  function hideTutorial(disable) {
+    window.tutorialDisabled = true;
+    $('.tutorial-step').removeClass('highlight');
+    $('body').addClass('tutorial-off');
+
+    // if disable, save in localstorage
+    if (disable && localStorage) {
+      localStorage.setItem('paranoid_tutorial_disabled', 'disabled');
+    }
+  }
+
+  function reenableTutorial() {
+    if (localStorage) {
+      localStorage.setItem('paranoid_tutorial_disabled', false);
+    }
+    window.tutorialDisabled = false;
+    $('body').removeClass('tutorial-off');
+    updateStatus();
+  }
+
+  // listen for uri changes
   uri.addEventListener('keyup', updateUri);
   uri.addEventListener('blur', updateUri);
   normalize.addEventListener('change', updateUri);
   updateUri();
 
+  // update status on blur
+  uri.addEventListener('blur', updateStatus);
+  passphrase.addEventListener('blur', updateStatus);
+  lock.addEventListener('blur', updateStatus);
 
+  // update status on enter
+  function handleEnter(e) {
+    if (e.keyCode === 13) {
+      updateStatus();
+    }
+  }
+  uri.addEventListener('keydown', handleEnter);
+  passphrase.addEventListener('keydown', handleEnter);
+  lock.addEventListener('keydown', handleEnter);
+
+  // clicking tutorial overlay should close it
+  $('#tutorial-overlay').on('click', function () {
+    hideTutorial();
+  });
+
+  $('.reenable-tutorial').on('click', function () {
+    reenableTutorial();
+  });
+
+  // disable tutorial buttons
+  $('.disable-tutorial').on('click', function () {
+    hideTutorial(true);
+  });
+
+  // load settings from localStorage
+  if (localStorage) {
+    if (localStorage.getItem('paranoid_tutorial_disabled') === 'disabled') {
+      hideTutorial();
+    }
+  }
+
+  // update status now
+  updateStatus();
+
+  // start in first field
+  uri.focus();
+
+  // generate password on click
   generateButton.addEventListener('click', function () {
     var paranoidHash = paranoid.paranoid({
       master: passphrase.value,
       lock: lock.value,
       uri: uri.value,
-      normalize: normalize.checked
+      normalize: normalize.checked,
+      // TODO: configure this
+      iterations: 10000
     });
 
     // if site is flagged as stupid by user
@@ -43,15 +187,32 @@ window.addEventListener('load', function () {
       document.getElementById('stupid_site_input').value === 'true';
 
     // if site is marked as stupid by user, limit length to 12
+    // TODO: re-ensure short version has proper characters!
     if (stupidSite) {
       paranoidHash = paranoidHash.substr(0, 12);
     }
 
     if (paranoidHash) {
       password.innerHTML = paranoidHash;
+      password.setAttribute('data-has-password', 'true');
     } else {
-      password.innerHTML = 'Error - Invalid Input';
+
+      // create a more helpful error
+      var errorMessage = 'Error - Invalid Input';
+      if (passphrase.value === '') {
+        errorMessage = 'Error - Passphrase cannot be blank';
+      } else if (lock.value === '') {
+        errorMessage = 'Error - Lock cannot be blank';
+      } else if (uri.value === '') {
+        errorMessage = 'Error - Site cannot be blank';
+      }
+
+      password.innerHTML = errorMessage;
+      password.removeAttribute('data-has-password');
     }
+
+    updateStatus();
+    doCopy();
   });
 
   // clear button
@@ -62,8 +223,10 @@ window.addEventListener('load', function () {
     password.innerHTML = 'Click Generate to Create Your Password';
 
     updateUri();
-  });
 
+    password.removeAttribute('data-has-password');
+    updateStatus();
+  });
 });
 
 },{"paranoidpassword":2}],2:[function(require,module,exports){
