@@ -1,19 +1,20 @@
 {
   "name": "paranoidpassword",
   "description": "better password generation",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta2",
   "keywords": "password, paranoid, password generator",
   "license": "MIT",
   "author": "Collin Green <collin@collingreen.com> (http://collingreen.com)",
   "homepage": "https://github.com/collingreen/paranoid",
   "bugs": "https://github.com/collingreen/paranoid/issues",
   "repository": {
-    "type" : "git",
-    "url" : "http://github.com/npm/npm.git"
+    "type": "git",
+    "url": "http://github.com/npm/npm.git"
   },
   "dependencies": {
-    "sjcl": "1.0.1",
-    "URIjs": "1.14.1"
+    "URIjs": "1.14.1",
+    "seedrandom": "^2.4.0",
+    "sjcl": "1.0.1"
   },
   "devDependencies": {
     "mocha": "2.0.1",

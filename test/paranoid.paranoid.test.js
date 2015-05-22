@@ -105,6 +105,32 @@ describe('Paranoid', function(){
       });
       expect(withMasterAndLockAndTarget).to.equal(withDefaults);
     });
+
+    it('should support password versioning', function () {
+      var withVersion = paranoid.paranoid({
+        master: master,
+        lock: lock,
+        target: uri,
+        version: 2
+      });
+      var withDifferentVersion = paranoid.paranoid({
+        master: master,
+        lock: lock,
+        target: uri,
+        version: 100
+      });
+      expect(withVersion).to.not.equal(withDifferentVersion);
+    });
+
+    it ('should default version to 1', function () {
+      var withVersion1 = paranoid.paranoid({
+        master: master,
+        lock: lock,
+        target: uri,
+        version: 1
+      });
+      expect(withVersion1).to.equal(withDefaults);
+    });
   }); // end describe #Parameters
 
 }); // end describe Paranoid
